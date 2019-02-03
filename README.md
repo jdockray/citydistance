@@ -12,7 +12,7 @@ Arguments:
 * numberOfResults (optional) - The maximum number of results to return
 
 Example:
-[https://60eor7ga2l.execute-api.eu-west-2.amazonaws.com/prod/wpdistance?latitude=52.2&longitude=0.1&numberOfResults=10]([https://60eor7ga2l.execute-api.eu-west-2.amazonaws.com/prod/wpdistance?latitude=52.2&longitude=0.1&numberOfResults=10)
+[https://60eor7ga2l.execute-api.eu-west-2.amazonaws.com/prod/wpdistance?latitude=52.2&longitude=0.1&numberOfResults=10](https://60eor7ga2l.execute-api.eu-west-2.amazonaws.com/prod/wpdistance?latitude=52.2&longitude=0.1&numberOfResults=10)
 
 ## Built With
 
@@ -20,4 +20,4 @@ Example:
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file.
