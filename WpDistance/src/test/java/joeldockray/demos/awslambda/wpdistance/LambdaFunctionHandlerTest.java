@@ -33,7 +33,7 @@ public class LambdaFunctionHandlerTest {
 	}
 
 	@Test
-    public void roundedSiteResultCorrect() throws InvalidLocationException {
+    public void roundedSiteResultCorrect() throws InvalidLatitudeException, InvalidLongitudeException {
 		ArrayList<Site> sites = SiteSearch.getSites();
 		HashMap<String, Location> siteMapping = new HashMap<String, Location>();
 		for (Site site : sites) {

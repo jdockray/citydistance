@@ -4,6 +4,7 @@ public class SiteSearchRequest {
 	private String latitude;
 	private String longitude;
 	private String numberOfResults;
+	private static final int DEFAULT_NUMBER_OF_RESULTS = 10;
 
 	public SiteSearchRequest(String latitude, String longitude, String numberOfResults)
 	{
@@ -17,24 +18,39 @@ public class SiteSearchRequest {
 		this("0", "0", "0");
 	}	
 	
-	public Location parseLocation() throws InvalidLocationException {
+	public Location parseLocation() throws InvalidLatitudeException, InvalidLongitudeException {
+		double latitudeNumber = 0;
 		try {
-			return Location.getLocation(Double.parseDouble(latitude), Double.parseDouble(longitude));
+			latitudeNumber = Double.parseDouble(latitude);
 		}
 		catch (NumberFormatException ex) {
-			throw new InvalidLocationException(ex);
-		}		
+			InvalidLatitudeException.reportInvalidLatitude(latitude, ex);
+		}
+		double longitudeNumber = 0;
+		try {
+			longitudeNumber = Double.parseDouble(longitude);
+		}
+		catch (NumberFormatException ex) {
+			InvalidLongitudeException.reportInvalidLongitude(longitude, ex);
+		}
+		return Location.getLocation(latitudeNumber, longitudeNumber);
 	}	
 	
 	public int parseNumberOfResults() throws InvalidResultNumberLimitException {
+		if (numberOfResults == "")
+		{
+			return DEFAULT_NUMBER_OF_RESULTS;
+		}
 		try {
 			int value = Integer.parseInt(numberOfResults);
 			NegativeValueException.verifyValuePositive(value);
 			return value;
 		}
 		catch (NumberFormatException | NegativeValueException ex) {
-			throw new InvalidResultNumberLimitException(ex);
+			// Always throws
+			InvalidResultNumberLimitException.reportInvalidResultNumberLimit(numberOfResults, ex);
 		}
+		throw new AssertionError(); // Assert unreachable code
 	}
 	
     public void setLatitude(String latitude) {

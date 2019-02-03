@@ -8,11 +8,12 @@ public class Location {
 	public final double longitude; // Positive = East,  Negative = West
 	private final double[] nv; // Normal vector
 
-	public static Location getLocation(double latitude, double longitude) throws InvalidLocationException {
+	public static Location getLocation(double latitude, double longitude)
+			throws InvalidLatitudeException, InvalidLongitudeException {
 		if (Double.isNaN(latitude) || Math.abs(latitude) > 90)
-			throw new InvalidLocationException(latitude + " is an invalid latitude.");
+			InvalidLatitudeException.reportInvalidLatitude(latitude);
 		if (Double.isNaN(longitude) || Math.abs(longitude) > 180)
-			throw new InvalidLocationException(longitude + " is an invalid longitude.");
+			InvalidLongitudeException.reportInvalidLongitude(longitude);
 		return new Location(latitude, longitude);
 	}
 		

@@ -19,7 +19,8 @@ public class SiteResultOutputTest {
     
 	// Not in static block due to potential to throw exceptions
 	@BeforeAll
-	public static void setUp() throws InvalidLocationException, NegativeValueException
+	public static void setUp() throws InvalidLatitudeException, InvalidLongitudeException,
+										NegativeValueException
 	{
 		testSite = new Site(SITE_NAME, Location.getLocation(LATITUDE_IN, LONGITUDE_IN));
 		testSiteResult = SiteResult.createSiteResult(testSite, DISTANCE_IN);

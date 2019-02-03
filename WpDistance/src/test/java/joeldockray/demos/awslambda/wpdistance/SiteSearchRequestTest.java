@@ -13,7 +13,8 @@ public class SiteSearchRequestTest {
     static final String INVALID_TEST_RESULT_COUNT_NAN = "Sponge";
 	
 	@Test
-    public void parse() throws NumberFormatException, InvalidLocationException, InvalidResultNumberLimitException {		        
+    public void parse() throws NumberFormatException, InvalidLatitudeException, InvalidLongitudeException,
+    							InvalidResultNumberLimitException {		        
 		SiteSearchRequest request
 			= new SiteSearchRequest(VALID_TEST_LATITUDE, VALID_TEST_LONGITUDE, VALID_TEST_RESULT_COUNT);
         Location location = request.parseLocation();
@@ -23,7 +24,8 @@ public class SiteSearchRequestTest {
 	}
 			
 	@Test
-    public void gettersAndSetters() throws InvalidLocationException, InvalidResultNumberLimitException {		        
+    public void gettersAndSetters() throws InvalidLatitudeException, InvalidLongitudeException,
+    										InvalidResultNumberLimitException {		        
 		SiteSearchRequest request = new SiteSearchRequest();
 		request.setLatitude(VALID_TEST_LATITUDE);
 		request.setLongitude(VALID_TEST_LONGITUDE);
@@ -37,14 +39,14 @@ public class SiteSearchRequestTest {
 	public void invalidLocationOutsideRange() {		        
 		SiteSearchRequest request = new SiteSearchRequest(INVALID_TEST_LATITUDE_OUTSIDE_RANGE,
 															VALID_TEST_LONGITUDE, VALID_TEST_RESULT_COUNT);
-		Assertions.assertThrows(InvalidLocationException.class, () -> { request.parseLocation(); } );   
+		Assertions.assertThrows(InvalidLatitudeException.class, () -> { request.parseLocation(); } );   
 	}	
 
 	@Test
     public void invalidLocationNaN() {		        
 		SiteSearchRequest request
 			= new SiteSearchRequest(VALID_TEST_LATITUDE, INVALID_TEST_LONGITUDE_NAN, VALID_TEST_RESULT_COUNT);
-		Assertions.assertThrows(InvalidLocationException.class, () -> { request.parseLocation(); } );   
+		Assertions.assertThrows(InvalidLongitudeException.class, () -> { request.parseLocation(); } );   
 	}	
 		
 	@Test

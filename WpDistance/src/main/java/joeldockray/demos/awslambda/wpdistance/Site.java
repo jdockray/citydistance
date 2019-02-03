@@ -14,7 +14,7 @@ public class Site {
 	}
 		
 	public static Site createSite(String siteName, double latitude, double longitude)
-		throws InvalidLocationException
+		throws InvalidLatitudeException, InvalidLongitudeException
 	{
 		return new Site(siteName, Location.getLocation(latitude, longitude));
 	}

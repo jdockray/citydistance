@@ -11,7 +11,7 @@ public class SiteSearch {
 			NegativeValueException.verifyValuePositive(numberOfResults, "The result number limit is negative.");
 		}
 		catch (NegativeValueException ex) {
-			throw new InvalidResultNumberLimitException(ex);
+			InvalidResultNumberLimitException.reportInvalidResultNumberLimit(numberOfResults, ex);
 		}
 		ArrayList<SiteResult> sitesWithDistanceAway = new ArrayList<SiteResult>();
 		for (Site site : sites)	{
@@ -35,7 +35,7 @@ public class SiteSearch {
 		return sites;
 	}
 
-	private static void loadSites(ArrayList<Site> siteList) throws InvalidLocationException {
+	private static void loadSites(ArrayList<Site> siteList) throws InvalidLatitudeException, InvalidLongitudeException  {
 		siteList.add(Site.createSite("Amsterdam", 52.3377672,4.8702082));
 		siteList.add(Site.createSite("Ann Arbor", 42.2775,-83.74083));
 		siteList.add(Site.createSite("Atlanta", 33.7915558,-84.3968513));

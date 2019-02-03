@@ -1,13 +1,22 @@
 package joeldockray.demos.awslambda.wpdistance;
 
-public class InvalidResultNumberLimitException extends Exception{
+public class InvalidResultNumberLimitException extends PermittedStatus400Exception {
 	
-	InvalidResultNumberLimitException(String message) {
-		super(message);
+	private InvalidResultNumberLimitException(String message, Exception cause) {
+		super(message, cause);
 	}
 	
-	InvalidResultNumberLimitException(Exception cause) {
-		super(cause);
+	public static void reportInvalidResultNumberLimit(String limitString, Exception cause)
+		throws InvalidResultNumberLimitException
+	{
+		throw new InvalidResultNumberLimitException(
+			limitString + " is not a valid number of results to return.", cause);
 	}
-
+	
+	public static void reportInvalidResultNumberLimit(double invalidLimit, Exception cause)
+		throws InvalidResultNumberLimitException
+	{
+		reportInvalidResultNumberLimit(String.valueOf(invalidLimit), cause);
+	}
+	
 }

@@ -8,22 +8,33 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 public class LambdaFunctionHandler implements RequestHandler<SiteSearchRequest, ArrayList<SiteResultOutput>> {
 
-    // Visible for testing
+	// Called by AWS
+	@Override
+    public ArrayList<SiteResultOutput> handleRequest(SiteSearchRequest input, Context context) {	
+		try {
+			return handleRequestInternal(input);
+		}
+		catch (Throwable ex) {
+			throw marshalToRuntimeError(ex);
+		}
+	}
+	
 	public ArrayList<SiteResultOutput> handleRequestInternal(SiteSearchRequest input)
-    		throws InvalidLocationException, InvalidResultNumberLimitException {
+    		throws PermittedStatus400Exception {
 		Location queryLocation = input.parseLocation();
 		int numberOfResultsToReturn = input.parseNumberOfResults();
 		return SiteResultOutput.parseResults(SiteSearch.search(queryLocation, numberOfResultsToReturn));
 	}
-	
-	// Called by AWS
-	@Override
-    public ArrayList<SiteResultOutput> handleRequest(SiteSearchRequest input, Context context) {
-		try {
-			return handleRequestInternal(input);
+
+	public RuntimeException marshalToRuntimeError(Throwable ex)
+	{
+		if (ex instanceof PermittedStatus400Exception)
+		{
+			throw new RuntimeException("400: " + ex.getMessage());
 		}
-		catch (InvalidLocationException | InvalidResultNumberLimitException ex) {
-			throw new RuntimeException(ex);
+		else
+		{
+			throw new RuntimeException("500: An unexpected error occurred.");
 		}
-    }
+	}
 }

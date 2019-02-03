@@ -21,19 +21,19 @@ public class LocationTest {
 	@ParameterizedTest
 	@ValueSource(doubles = {90.1, -90.1, Double.NEGATIVE_INFINITY, Double.NaN})
 	public void getInvalidLatitude(double latitude) {
-		Assertions.assertThrows(InvalidLocationException.class,
+		Assertions.assertThrows(InvalidLatitudeException.class,
 			() -> { Location.getLocation(latitude, LONGITUDE); } );
 	}
 		
 	@ParameterizedTest
 	@ValueSource(doubles = {180.1, -180.1, Double.POSITIVE_INFINITY, Double.NaN})
 	public void getInvalidLongitude(double longitude) {
-		Assertions.assertThrows(InvalidLocationException.class,
+		Assertions.assertThrows(InvalidLongitudeException.class,
 			() -> { Location.getLocation(LATITUDE, longitude); } );
 	}
 
 	@Test
-	public void construction() throws InvalidLocationException {	
+	public void construction() throws InvalidLatitudeException, InvalidLongitudeException {	
 		Location location = Location.getLocation(LATITUDE, LONGITUDE);
 		Assertions.assertEquals(LATITUDE, location.latitude);
 		Assertions.assertEquals(LONGITUDE, location.longitude);
@@ -41,26 +41,28 @@ public class LocationTest {
 	
 	@ParameterizedTest
 	@ValueSource(doubles = {90, -90}) // Poles only
-	public void longitudeIgnoredAtPoles(double latitude) throws InvalidLocationException {
+	public void longitudeIgnoredAtPoles(double latitude)
+			throws InvalidLatitudeException, InvalidLongitudeException {
 		Assertions.assertEquals(Location.getLocation(latitude, LONGITUDE),
 			Location.getLocation(latitude, -LONGITUDE)); // Longitude deliberately negative
 	}
 	
 	@Test
-	public void originAntipodeEquality() throws InvalidLocationException {
+	public void originAntipodeEquality() throws InvalidLatitudeException, InvalidLongitudeException {
 		Assertions.assertEquals(Location.getLocation(LATITUDE, -180),
 									Location.getLocation(LATITUDE, 180));	
 	}
 
 	@Test
-	public void distanceBetweenPoles() throws InvalidLocationException {
+	public void distanceBetweenPoles() throws InvalidLatitudeException, InvalidLongitudeException {
 		Assertions.assertEquals(HALF_EARTH_CIRCUMFERENCE,
 									Location.getDistance(NORTH_POLE, SOUTH_POLE));		
 	}
 
 	@ParameterizedTest
 	@ValueSource(doubles = {-90, 0, 90, 180})	
-	public void distancesAroundPoles(double longitude) throws InvalidLocationException {
+	public void distancesAroundPoles(double longitude)
+			throws InvalidLatitudeException, InvalidLongitudeException {
 		double nextLongitude = longitude + 90;
 		if (nextLongitude > 180) nextLongitude -= 360;
 		Assertions.assertEquals(0, Location.getDistance(Location.getLocation(ALMOST_POLE_LATITUDE, longitude),
@@ -70,7 +72,8 @@ public class LocationTest {
 	
 	@ParameterizedTest
 	@ValueSource(doubles = {-90, 0, 90, 180})	
-	public void distancesAroundEquator(double longitude) throws InvalidLocationException {
+	public void distancesAroundEquator(double longitude)
+			throws InvalidLatitudeException, InvalidLongitudeException {
 		double nextLongitude = longitude + 90;
 		if (nextLongitude > 180) nextLongitude -= 360;
 		Assertions.assertEquals(QUARTER_EARTH_CIRCUMFERENCE, Location.getDistance(
@@ -80,7 +83,8 @@ public class LocationTest {
 	
 	@ParameterizedTest
 	@ValueSource(doubles = {-90, 0, 90, 180})	
-	public void distancesFromEquatorToPoles(double longitude) throws InvalidLocationException {
+	public void distancesFromEquatorToPoles(double longitude)
+			throws InvalidLatitudeException, InvalidLongitudeException {
 		Assertions.assertEquals(QUARTER_EARTH_CIRCUMFERENCE, Location.getDistance(
 			NORTH_POLE, Location.getLocation(0, longitude)), CALCULATION_TOLERANCE);
 		Assertions.assertEquals(QUARTER_EARTH_CIRCUMFERENCE, Location.getDistance(
@@ -89,7 +93,8 @@ public class LocationTest {
 
 	@ParameterizedTest
 	@ValueSource(doubles = {-90, 0, 90, 180})	
-	public void equatorialAntipodeDistances(double longitude) throws InvalidLocationException {
+	public void equatorialAntipodeDistances(double longitude)
+			throws InvalidLatitudeException, InvalidLongitudeException {
 		double nextLongitude = longitude + 180;
 		if (nextLongitude > 180) nextLongitude -= 360;
 		Assertions.assertEquals(HALF_EARTH_CIRCUMFERENCE, Location.getDistance(
@@ -100,7 +105,7 @@ public class LocationTest {
 	@ParameterizedTest
 	@ValueSource(doubles = {-90, 0, 90, 180})	
 	public void antipodeDistancesAt45Degrees(double longitude)
-			throws InvalidLocationException {
+			throws InvalidLatitudeException, InvalidLongitudeException {
 		double nextLongitude = longitude + 180;
 		if (nextLongitude > 180) nextLongitude -= 360;
 		Assertions.assertEquals(HALF_EARTH_CIRCUMFERENCE, Location.getDistance(
@@ -111,7 +116,7 @@ public class LocationTest {
 	@ParameterizedTest
 	@ValueSource(doubles = {-90, 0, 90, 180})	
 	public void distanceWithReflectAndRotateAt45Degrees(double longitude)
-			throws InvalidLocationException {
+			throws InvalidLatitudeException, InvalidLongitudeException {
 		double nextLongitude = longitude + 90;
 		if (nextLongitude > 180) nextLongitude -= 360;
 		Assertions.assertEquals(THIRD_EARTH_CIRCUMFERENCE, Location.getDistance(
@@ -120,7 +125,7 @@ public class LocationTest {
 	}
 	
 	@Test
-	public void round() throws InvalidLocationException {
+	public void round() throws InvalidLatitudeException, InvalidLongitudeException {
 		Assertions.assertEquals(Location.getLocation(LATITUDE, LONGITUDE).round(4),
 			Location.getLocation(ROUNDED_4DP_LATITUDE, ROUNDED_4DP_LONGITUDE));
 	}
