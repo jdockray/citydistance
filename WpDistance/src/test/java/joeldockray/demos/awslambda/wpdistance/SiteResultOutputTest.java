@@ -16,18 +16,17 @@ public class SiteResultOutputTest {
 	static final String EXPECTED_DISTANCE_OUT = "42387487";
 	static Site testSite;
 	static SiteResult testSiteResult;  
-    
+	
 	// Not in static block due to potential to throw exceptions
 	@BeforeAll
 	public static void setUp() throws InvalidLatitudeException, InvalidLongitudeException,
-										NegativeValueException
-	{
+										NegativeValueException {
 		testSite = new Site(SITE_NAME, Location.getLocation(LATITUDE_IN, LONGITUDE_IN));
 		testSiteResult = SiteResult.createSiteResult(testSite, DISTANCE_IN);
 	}
 
 	@Test
-    public void parsingConstruction() {
+	public void parsingConstruction() {
 		SiteResultOutput output = new SiteResultOutput(testSiteResult);
 		Assertions.assertEquals(SITE_NAME, output.getSiteName());
 		Assertions.assertEquals(EXPECTED_LATITUDE_OUT, output.getLatitude());
@@ -36,7 +35,7 @@ public class SiteResultOutputTest {
 	}	
 	
 	@Test
-    public void gettersAndSetters() {
+	public void gettersAndSetters() {
 		SiteResultOutput output = new SiteResultOutput();
 		output.setSiteName(SITE_NAME);
 		output.setLatitude(EXPECTED_LATITUDE_OUT);

@@ -16,32 +16,32 @@ public class SiteSearchTest {
 	
 	@BeforeEach
 	public void setUp() throws InvalidResultNumberLimitException {
-		testSite = SiteSearch.getSites().get(QUERY_LOCATION_SITE);        
-        results = SiteSearch.search(testSite.location, NUMBER_OF_RESULTS).toArray(SiteResult[]::new);
+		testSite = SiteSearch.getSites().get(QUERY_LOCATION_SITE);		
+		results = SiteSearch.search(testSite.location, NUMBER_OF_RESULTS).toArray(SiteResult[]::new);
 	}
 
 	@Test
-    public void closestResult() throws NegativeValueException {		        
-        Assertions.assertTrue(results[0].equals(SiteResult.createSiteResult(testSite, 0.0)));
+	public void closestResult() throws NegativeValueException {				
+		Assertions.assertTrue(results[0].equals(SiteResult.createSiteResult(testSite, 0.0)));
 	}
 	
 	@Test
-    public void resultSorting() {        
+	public void resultSorting() {		
 		for (int i = 1; i < results.length; i++) {
-        	Assertions.assertTrue(results[i - 1].kmDistanceAway < results[i].kmDistanceAway);
-        }
+			Assertions.assertTrue(results[i - 1].kmDistanceAway < results[i].kmDistanceAway);
+		}
 	}
 
 	@Test
-    public void sitesAreValid() {
-        for (SiteResult result : results) {
-        	Assertions.assertTrue(SiteSearch.getSites().contains(result.site));
-        }
+	public void sitesAreValid() {
+		for (SiteResult result : results) {
+			Assertions.assertTrue(SiteSearch.getSites().contains(result.site));
+		}
 	}
 
 	@Test
-    public void noDuplicates() {
-        HashSet<SiteResult> resultSet = new HashSet<SiteResult>();
+	public void noDuplicates() {
+		HashSet<SiteResult> resultSet = new HashSet<SiteResult>();
 		for (SiteResult result : results) {
 			resultSet.add(result);
 		}

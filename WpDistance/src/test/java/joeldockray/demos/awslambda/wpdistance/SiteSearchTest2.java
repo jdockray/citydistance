@@ -15,18 +15,18 @@ public class SiteSearchTest2 {
 		queryLocation = SiteSearch.getSites().get(QUERY_LOCATION_SITE).location;
 	}
 
-    public void noResults() throws InvalidResultNumberLimitException {
+	public void noResults() throws InvalidResultNumberLimitException {
 		Assertions.assertEquals(0, SiteSearch.search(queryLocation, 0).count());
 	}
 	
 	@Test
-    public void allResults() throws InvalidResultNumberLimitException {
+	public void allResults() throws InvalidResultNumberLimitException {
 		Assertions.assertEquals(SiteSearch.getSites().size(),
 								SiteSearch.search(queryLocation, Integer.MAX_VALUE).count());
 	}
 
 	@Test
-    public void negativeNumberOfResults() {
+	public void negativeNumberOfResults() {
 		Assertions.assertThrows(InvalidResultNumberLimitException.class,
 									() -> SiteSearch.search(queryLocation, Integer.MIN_VALUE));
 	}	

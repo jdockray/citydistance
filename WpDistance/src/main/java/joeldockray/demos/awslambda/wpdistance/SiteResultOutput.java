@@ -32,45 +32,45 @@ public class SiteResultOutput {
 		return stringResults;
 	}
 	
-    public void setSiteName(String siteName) {
-        this.siteName = siteName;
-    }	
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
+	}	
 	
-    public String getSiteName() {
-        return siteName;
-    }
+	public String getSiteName() {
+		return siteName;
+	}
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }	
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}	
 	
-    public String getLatitude() {
-        return latitude;
-    }    
+	public String getLatitude() {
+		return latitude;
+	}	
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }	
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}	
 	
-    public String getLongitude() {
-        return longitude;
-    }
-    
-    public void setKmDistanceAway(String kmDistanceAway) {
-        this.kmDistanceAway = kmDistanceAway;
-    }	
+	public String getLongitude() {
+		return longitude;
+	}
 	
-    public String getKmDistanceAway() {
-        return kmDistanceAway;
-    }
-    	
+	public void setKmDistanceAway(String kmDistanceAway) {
+		this.kmDistanceAway = kmDistanceAway;
+	}	
+	
+	public String getKmDistanceAway() {
+		return kmDistanceAway;
+	}
+		
 	@Override
 	public boolean equals(Object obj) {
-	    return obj != null && obj instanceof SiteResultOutput && obj.hashCode() == hashCode();
+		return obj != null && obj instanceof SiteResultOutput && obj.hashCode() == hashCode();
 	}
 	
 	@Override
 	public int hashCode() {
-	    return Objects.hash(siteName, latitude, longitude, kmDistanceAway);
+		return Objects.hash(siteName, latitude, longitude, kmDistanceAway);
 	}
 }

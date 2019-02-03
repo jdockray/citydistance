@@ -12,31 +12,30 @@ public class SiteResultTest {
 	static final double LATITUDE = -50;
 	static final double LONGITUDE = -90;
 	static Site testSite;
-    
+	
 	// Not in static block due to potential to throw exceptions
 	@BeforeAll
 	public static void setUp() throws InvalidLatitudeException, InvalidLongitudeException,
-										NegativeValueException
-	{
+										NegativeValueException {
 		testSite = new Site(SITE_NAME, Location.getLocation(LATITUDE, LONGITUDE));
 	}
 
 	@Test
-    public void constructionWithLocation() {
+	public void constructionWithLocation() {
 		SiteResult result = new SiteResult(testSite, testSite.location);
 		Assertions.assertEquals(testSite, result.site);
 		Assertions.assertEquals(0, result.kmDistanceAway);
 	}	
 
 	@Test
-    public void constructionWithDistance() throws NegativeValueException {
+	public void constructionWithDistance() throws NegativeValueException {
 		SiteResult result = SiteResult.createSiteResult(testSite, 0);
 		Assertions.assertEquals(testSite, result.site);
 		Assertions.assertEquals(0, result.kmDistanceAway);
 	}	
 
 	@Test
-    public void sortedStream() throws NegativeValueException {
+	public void sortedStream() throws NegativeValueException {
 		SiteResult closerResult = SiteResult.createSiteResult(testSite, 1);
 		SiteResult furtherAwayResult = SiteResult.createSiteResult(testSite, 2);
 		ArrayList<SiteResult> unsortedSiteResults = new ArrayList<SiteResult>();

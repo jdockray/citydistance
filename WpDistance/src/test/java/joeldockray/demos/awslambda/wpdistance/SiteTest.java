@@ -7,9 +7,9 @@ public class SiteTest {
 	static final String SITE_NAME = "ABC123";
 	static final double LATITUDE = 0.5;
 	static final double LONGITUDE = 180;
-    
+	
 	@Test
-    public void construction() throws InvalidLatitudeException, InvalidLongitudeException {
+	public void construction() throws InvalidLatitudeException, InvalidLongitudeException {
 		Site site = new Site(SITE_NAME, Location.getLocation(LATITUDE, LONGITUDE));
 		Assertions.assertEquals(SITE_NAME, site.siteName);
 		Assertions.assertEquals(LATITUDE, site.location.latitude);
@@ -17,7 +17,7 @@ public class SiteTest {
 	}	
 
 	@Test
-    public void create() throws InvalidLatitudeException, InvalidLongitudeException {
+	public void create() throws InvalidLatitudeException, InvalidLongitudeException {
 		Site site = Site.createSite(SITE_NAME, LATITUDE, LONGITUDE);
 		Assertions.assertEquals(SITE_NAME, site.siteName);
 		Assertions.assertEquals(LATITUDE, site.location.latitude);

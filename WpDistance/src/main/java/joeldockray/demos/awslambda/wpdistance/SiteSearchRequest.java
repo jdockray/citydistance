@@ -6,15 +6,13 @@ public class SiteSearchRequest {
 	private String numberOfResults;
 	private static final int DEFAULT_NUMBER_OF_RESULTS = 10;
 
-	public SiteSearchRequest(String latitude, String longitude, String numberOfResults)
-	{
+	public SiteSearchRequest(String latitude, String longitude, String numberOfResults) {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.numberOfResults = numberOfResults;
 	}
 
-	public SiteSearchRequest()
-	{
+	public SiteSearchRequest() {
 		this("0", "0", "0");
 	}	
 	
@@ -37,8 +35,7 @@ public class SiteSearchRequest {
 	}	
 	
 	public int parseNumberOfResults() throws InvalidResultNumberLimitException {
-		if (numberOfResults == "")
-		{
+		if (numberOfResults == "") {
 			return DEFAULT_NUMBER_OF_RESULTS;
 		}
 		try {
@@ -53,27 +50,27 @@ public class SiteSearchRequest {
 		throw new AssertionError(); // Assert unreachable code
 	}
 	
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }	
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}	
 	
-    public String getLatitude() {
-        return latitude;
-    }
-    
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
-    }	
+	public String getLatitude() {
+		return latitude;
+	}
 	
-    public String getLongitude() {
-        return longitude;
-    }
-    
-    public void setNumberOfResults(String numberOfResults) {
-        this.numberOfResults = numberOfResults;
-    }	
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}	
 	
-    public String getNumberOfResults() {
-        return numberOfResults;
-    }    
+	public String getLongitude() {
+		return longitude;
+	}
+	
+	public void setNumberOfResults(String numberOfResults) {
+		this.numberOfResults = numberOfResults;
+	}	
+	
+	public String getNumberOfResults() {
+		return numberOfResults;
+	}	
 }

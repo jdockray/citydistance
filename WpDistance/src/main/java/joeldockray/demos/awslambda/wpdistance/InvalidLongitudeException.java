@@ -7,26 +7,22 @@ public class InvalidLongitudeException extends PermittedStatus400Exception {
 	}	
 	
 	public static void reportInvalidLongitude(String longitudeString, Exception cause)
-		throws InvalidLongitudeException
-	{
+		throws InvalidLongitudeException {
 		throw new InvalidLongitudeException(longitudeString + " is not a valid longitude.", cause);
 	}
 
 	public static void reportInvalidLongitude(String longitudeString)
-		throws InvalidLongitudeException
-	{
+		throws InvalidLongitudeException {
 		reportInvalidLongitude(longitudeString, null);	
 	}
 	
 	public static void reportInvalidLongitude(double longitude, Exception cause)
-		throws InvalidLongitudeException
-	{
+		throws InvalidLongitudeException {
 		reportInvalidLongitude(String.valueOf(longitude), cause);
 	}
 	
 	public static void reportInvalidLongitude(double longitude)
-			throws InvalidLongitudeException
-	{
+			throws InvalidLongitudeException {
 		reportInvalidLongitude(longitude, null);
 	}
 }

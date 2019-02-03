@@ -63,12 +63,12 @@ public class Location {
 		
 	@Override
 	public boolean equals(Object obj) {
-	    return obj != null && obj instanceof Location && obj.hashCode() == hashCode();
+		return obj != null && obj instanceof Location && obj.hashCode() == hashCode();
 	}
 	
 	@Override
 	public int hashCode() {
-	    return Objects.hash(latitude, longitude);
+		return Objects.hash(latitude, longitude);
 	}
 	
 	private static double square(double value) {

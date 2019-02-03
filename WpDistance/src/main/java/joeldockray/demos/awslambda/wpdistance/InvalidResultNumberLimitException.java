@@ -7,15 +7,13 @@ public class InvalidResultNumberLimitException extends PermittedStatus400Excepti
 	}
 	
 	public static void reportInvalidResultNumberLimit(String limitString, Exception cause)
-		throws InvalidResultNumberLimitException
-	{
+		throws InvalidResultNumberLimitException {
 		throw new InvalidResultNumberLimitException(
 			limitString + " is not a valid number of results to return.", cause);
 	}
 	
 	public static void reportInvalidResultNumberLimit(double invalidLimit, Exception cause)
-		throws InvalidResultNumberLimitException
-	{
+		throws InvalidResultNumberLimitException {
 		reportInvalidResultNumberLimit(String.valueOf(invalidLimit), cause);
 	}
 	
