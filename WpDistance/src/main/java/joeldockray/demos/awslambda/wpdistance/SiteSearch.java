@@ -1,12 +1,13 @@
 package joeldockray.demos.awslambda.wpdistance;
 
 import java.util.ArrayList;
-import java.util.stream.Stream;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SiteSearch {
 	private static final ArrayList<Site> sites;
 		
-	public static Stream<SiteResult> search(Location queryLocation, int numberOfResults) throws InvalidResultNumberLimitException {
+	public static List<SiteResult> search(Location queryLocation, int numberOfResults) throws InvalidResultNumberLimitException {
 		try	{
 			NegativeValueException.verifyValuePositive(numberOfResults, "The result number limit is negative.");
 		}
@@ -17,7 +18,7 @@ public class SiteSearch {
 		for (Site site : sites)	{
 			sitesWithDistanceAway.add(new SiteResult(site, queryLocation));
 		}	
-		return SiteResult.sortedStream(sitesWithDistanceAway).limit(numberOfResults);
+		return SiteResult.sortedStream(sitesWithDistanceAway).limit(numberOfResults).collect(Collectors.toList());
 	}
 	
 	static {		

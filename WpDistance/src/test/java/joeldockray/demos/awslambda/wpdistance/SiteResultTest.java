@@ -22,16 +22,16 @@ public class SiteResultTest {
 
 	@Test
 	public void constructionWithLocation() {
-		SiteResult result = new SiteResult(testSite, testSite.location);
-		Assertions.assertEquals(testSite, result.site);
-		Assertions.assertEquals(0, result.kmDistanceAway);
+		SiteResult result = new SiteResult(testSite, testSite.getLocation());
+		Assertions.assertEquals(testSite, result.getSite());
+		Assertions.assertEquals(0, result.getKmDistanceAway());
 	}	
 
 	@Test
 	public void constructionWithDistance() throws NegativeValueException {
 		SiteResult result = SiteResult.createSiteResult(testSite, 0);
-		Assertions.assertEquals(testSite, result.site);
-		Assertions.assertEquals(0, result.kmDistanceAway);
+		Assertions.assertEquals(testSite, result.getSite());
+		Assertions.assertEquals(0, result.getKmDistanceAway());
 	}	
 
 	@Test

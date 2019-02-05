@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Location {
 	public static final double EARTH_RADIUS_KM = 6371.0088; // WGS84 mean radius
-	public final double latitude;  // Positive = North, Negative = South
-	public final double longitude; // Positive = East,  Negative = West
+	private final double latitude;  // Positive = North, Negative = South
+	private final double longitude; // Positive = East,  Negative = West
 	private final double[] nv; // Normal vector
 
 	public static Location getLocation(double latitude, double longitude)
@@ -81,5 +81,13 @@ public class Location {
 		value = (double) Math.round(value);
 		for (int i = 0; i < decimalPlaces; i++) value /= 10;
 		return value;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
 	}
 }

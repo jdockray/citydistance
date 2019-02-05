@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Site {
 
-	public final String siteName;   // Immutable
-	public final Location location; // Immutable
+	private final String name;
+	private final Location location;
 	
-	public Site(String siteName, Location location) {
-		this.siteName = siteName;
+	public Site(String name, Location location) {
+		this.name = name;
 		this.location = location;
 	}
 		
@@ -28,6 +28,14 @@ public class Site {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(siteName, location);
+		return Objects.hash(name, location);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Location getLocation() {
+		return location;
 	}
 }

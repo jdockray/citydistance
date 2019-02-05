@@ -2,6 +2,7 @@ package joeldockray.demos.awslambda.wpdistance;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +14,7 @@ public class LambdaFunctionHandlerTest {
 	static final int QUERY_LOCATION_SITE = 0;
 	static final int NUMBER_OF_RESULTS = 2;	
 	static final double KM_DISTANCE_TOLERANCE = 0.5;
-	public ArrayList<SiteResultOutput> results;
+	public List<SiteResult> results;
 	
 	@BeforeEach
 	public void setUp() {
@@ -21,8 +22,8 @@ public class LambdaFunctionHandlerTest {
 		LambdaFunctionHandler handler = new LambdaFunctionHandler();
 		TestContext context = new TestContext();		
 		SiteSearchRequest input
-			= new SiteSearchRequest(String.valueOf(testSite.location.latitude),
-										String.valueOf(testSite.location.longitude),
+			= new SiteSearchRequest(String.valueOf(testSite.getLocation().getLatitude()),
+										String.valueOf(testSite.getLocation().getLongitude()),
 										String.valueOf(NUMBER_OF_RESULTS));
 		results = handler.handleRequest(input, context);
 	}
@@ -37,14 +38,13 @@ public class LambdaFunctionHandlerTest {
 		ArrayList<Site> sites = SiteSearch.getSites();
 		HashMap<String, Location> siteMapping = new HashMap<String, Location>();
 		for (Site site : sites) {
-			siteMapping.put(site.siteName, site.location);
+			siteMapping.put(site.getName(), site.getLocation());
 		}
-		for (SiteResultOutput result : results) {
-			Location locationOfSiteCorrespondingToResult = siteMapping.get(result.getSiteName());
-			Location resultLocation = Location.getLocation(Double.parseDouble(result.getLatitude()),
-															Double.parseDouble(result.getLongitude()));
+		for (SiteResult result : results) {
 			Assertions.assertTrue(
-				Location.getDistance(locationOfSiteCorrespondingToResult, resultLocation) < KM_DISTANCE_TOLERANCE);
+				Location.getDistance(
+					siteMapping.get(result.getSite().getName()), result.getSite().getLocation())
+						< KM_DISTANCE_TOLERANCE);
 		}
 	}
 	

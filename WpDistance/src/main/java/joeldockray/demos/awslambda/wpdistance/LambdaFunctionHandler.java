@@ -2,15 +2,16 @@
 
 package joeldockray.demos.awslambda.wpdistance;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-public class LambdaFunctionHandler implements RequestHandler<SiteSearchRequest, ArrayList<SiteResultOutput>> {
+public class LambdaFunctionHandler implements RequestHandler<SiteSearchRequest, List<SiteResult>> {
 
 	// Called by AWS
 	@Override
-	public ArrayList<SiteResultOutput> handleRequest(SiteSearchRequest input, Context context) {	
+	public List<SiteResult> handleRequest(SiteSearchRequest input, Context context) {	
 		try {
 			return handleRequestInternal(input);
 		}
@@ -19,11 +20,11 @@ public class LambdaFunctionHandler implements RequestHandler<SiteSearchRequest, 
 		}
 	}
 	
-	public ArrayList<SiteResultOutput> handleRequestInternal(SiteSearchRequest input)
+	public List<SiteResult> handleRequestInternal(SiteSearchRequest input)
 			throws PermittedStatus400Exception {
 		Location queryLocation = input.parseLocation();
 		int numberOfResultsToReturn = input.parseNumberOfResults();
-		return SiteResultOutput.parseResults(SiteSearch.search(queryLocation, numberOfResultsToReturn));
+		return SiteSearch.search(queryLocation, numberOfResultsToReturn);
 	}
 
 	public RuntimeException marshalToRuntimeError(Throwable ex) {

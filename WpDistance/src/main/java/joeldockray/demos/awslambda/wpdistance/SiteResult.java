@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 public class SiteResult {
 
-	public final Site site;	// Immutable
-	public final double kmDistanceAway;
+	private final Site site;
+	private final int kmDistanceAway;
 	
 	private static final Comparator<SiteResult> CLOSEST_SITES_FIRST = new Comparator<SiteResult>() {
 		@Override
@@ -17,20 +17,20 @@ public class SiteResult {
 		}	
 	};	
 	
-	private SiteResult(Site site, double kmDistanceAway) {
+	private SiteResult(Site site, int kmDistanceAway) {
 		this.site = site;
 		this.kmDistanceAway = kmDistanceAway;
 	}
 	
 	public SiteResult(Site site, Location queryLocation) {
-		this(site, Location.getDistance(site.location, queryLocation));
+		this(site, (int) Math.round(Location.getDistance(site.getLocation(), queryLocation)));
 	}
 	
 	public SiteResult() {
 		this(new Site(), 0);
 	}
 
-	public static SiteResult createSiteResult(Site site, double kmDistanceAway) throws NegativeValueException {
+	public static SiteResult createSiteResult(Site site, int kmDistanceAway) throws NegativeValueException {
 		NegativeValueException.verifyValuePositive(kmDistanceAway, "The distance away is negative.");
 		return new SiteResult(site, kmDistanceAway);
 	}
@@ -48,5 +48,12 @@ public class SiteResult {
 	public int hashCode() {
 		return Objects.hash(site, kmDistanceAway);
 	}
-}
 
+	public Site getSite() {
+		return site;
+	}
+
+	public int getKmDistanceAway() {
+		return kmDistanceAway;
+	}
+}

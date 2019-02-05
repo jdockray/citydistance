@@ -18,8 +18,8 @@ public class SiteSearchRequestTest {
 		SiteSearchRequest request
 			= new SiteSearchRequest(VALID_TEST_LATITUDE, VALID_TEST_LONGITUDE, VALID_TEST_RESULT_COUNT);
 		Location location = request.parseLocation();
-		Assertions.assertEquals(Double.parseDouble(VALID_TEST_LATITUDE), location.latitude);
-		Assertions.assertEquals(Double.parseDouble(VALID_TEST_LONGITUDE), location.longitude);
+		Assertions.assertEquals(Double.parseDouble(VALID_TEST_LATITUDE), location.getLatitude());
+		Assertions.assertEquals(Double.parseDouble(VALID_TEST_LONGITUDE), location.getLongitude());
 		Assertions.assertEquals(Integer.parseInt(VALID_TEST_RESULT_COUNT), request.parseNumberOfResults());
 	}
 			

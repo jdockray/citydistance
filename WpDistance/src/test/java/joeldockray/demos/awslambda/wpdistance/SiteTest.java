@@ -11,17 +11,17 @@ public class SiteTest {
 	@Test
 	public void construction() throws InvalidLatitudeException, InvalidLongitudeException {
 		Site site = new Site(SITE_NAME, Location.getLocation(LATITUDE, LONGITUDE));
-		Assertions.assertEquals(SITE_NAME, site.siteName);
-		Assertions.assertEquals(LATITUDE, site.location.latitude);
-		Assertions.assertEquals(LONGITUDE, site.location.longitude);
+		Assertions.assertEquals(SITE_NAME, site.getName());
+		Assertions.assertEquals(LATITUDE, site.getLocation().getLatitude());
+		Assertions.assertEquals(LONGITUDE, site.getLocation().getLongitude());
 	}	
 
 	@Test
 	public void create() throws InvalidLatitudeException, InvalidLongitudeException {
 		Site site = Site.createSite(SITE_NAME, LATITUDE, LONGITUDE);
-		Assertions.assertEquals(SITE_NAME, site.siteName);
-		Assertions.assertEquals(LATITUDE, site.location.latitude);
-		Assertions.assertEquals(LONGITUDE, site.location.longitude);
+		Assertions.assertEquals(SITE_NAME, site.getName());
+		Assertions.assertEquals(LATITUDE, site.getLocation().getLatitude());
+		Assertions.assertEquals(LONGITUDE, site.getLocation().getLongitude());
 	}
 
 	@Test

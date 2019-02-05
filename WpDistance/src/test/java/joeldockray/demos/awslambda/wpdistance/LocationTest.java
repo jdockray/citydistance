@@ -35,8 +35,8 @@ public class LocationTest {
 	@Test
 	public void construction() throws InvalidLatitudeException, InvalidLongitudeException {	
 		Location location = Location.getLocation(LATITUDE, LONGITUDE);
-		Assertions.assertEquals(LATITUDE, location.latitude);
-		Assertions.assertEquals(LONGITUDE, location.longitude);
+		Assertions.assertEquals(LATITUDE, location.getLatitude());
+		Assertions.assertEquals(LONGITUDE, location.getLongitude());
 	}	
 	
 	@ParameterizedTest
