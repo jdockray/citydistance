@@ -4,7 +4,7 @@ A RESTful API for AWS Lambda which returns the nearest office locations of a maj
 
 ## Usage
 
-The API can be tested at [https://60eor7ga2l.execute-api.eu-west-2.amazonaws.com/prod/wpdistance](https://60eor7ga2l.execute-api.eu-west-2.amazonaws.com/prod/wpdistance?latitude=52.2&longitude=0.1&numberOfResults=10)
+The API can be tested at [https://c5t0egwn4a.execute-api.eu-west-2.amazonaws.com/wpdistance](https://c5t0egwn4a.execute-api.eu-west-2.amazonaws.com/wpdistance)
 
 Arguments:
 * Latitude - The latitude of the query position
@@ -12,7 +12,7 @@ Arguments:
 * numberOfResults (optional) - The maximum number of results to return
 
 Example:
-[https://60eor7ga2l.execute-api.eu-west-2.amazonaws.com/prod/wpdistance?latitude=52.2&longitude=0.1&numberOfResults=10](https://60eor7ga2l.execute-api.eu-west-2.amazonaws.com/prod/wpdistance?latitude=52.2&longitude=0.1&numberOfResults=10)
+[https://c5t0egwn4a.execute-api.eu-west-2.amazonaws.com/wpdistance?latitude=52.2&longitude=0.1&numberOfResults=10](https://c5t0egwn4a.execute-api.eu-west-2.amazonaws.com/wpdistance?latitude=52.2&longitude=0.1&numberOfResults=10)
 
 ## Built With
 
