@@ -1,5 +1,0 @@
-{
-   "latitude" : "$input.params('latitude')",
-   "longitude" : "$input.params('longitude')",
-   "numberOfResults" : "$input.params('numberOfResults')"
-}
