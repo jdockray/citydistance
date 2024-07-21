@@ -1,4 +1,4 @@
-package joeldockray.demos.awslambda.wpdistance;
+package joeldockray.demos.awslambda.citydistance;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

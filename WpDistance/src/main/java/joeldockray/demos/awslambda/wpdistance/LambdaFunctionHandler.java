@@ -1,6 +1,6 @@
 // Joel Dockray 2019
 
-package joeldockray.demos.awslambda.wpdistance;
+package joeldockray.demos.awslambda.citydistance;
 
 import java.util.List;
 

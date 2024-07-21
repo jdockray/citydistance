@@ -1,4 +1,4 @@
-package joeldockray.demos.awslambda.wpdistance;
+package joeldockray.demos.awslambda.citydistance;
 
 import java.util.Collection;
 import java.util.Comparator;

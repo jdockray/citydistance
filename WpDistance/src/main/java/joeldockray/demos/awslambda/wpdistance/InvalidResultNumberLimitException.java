@@ -1,4 +1,4 @@
-package joeldockray.demos.awslambda.wpdistance;
+package joeldockray.demos.awslambda.citydistance;
 
 public class InvalidResultNumberLimitException extends PermittedStatus400Exception {
 	
