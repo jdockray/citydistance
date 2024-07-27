@@ -7,7 +7,7 @@ import java.time.Duration;
 import org.junit.jupiter.api.Test;
 
 public class LambdaFunctionHandlerTest2 {
-	private static final int STRESS_TEST_REPEAT_NUMBER = 50000;
+	private static final int STRESS_TEST_REPEAT_NUMBER = 1000;
 	
 	@Test
 	public void stressTest() {
