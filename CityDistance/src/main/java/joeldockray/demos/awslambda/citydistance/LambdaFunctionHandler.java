@@ -1,4 +1,3 @@
-// Joel Dockray 2019
 
 package joeldockray.demos.awslambda.citydistance;
 
