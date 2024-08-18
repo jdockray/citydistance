@@ -8,6 +8,8 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 public class LambdaFunctionHandler implements RequestHandler<SiteSearchRequest, List<SiteResult>> {
 
+	static final int MAXIMUM_NUMBER_OF_RESULTS = 500;
+	
 	// Called by AWS
 	@Override
 	public List<SiteResult> handleRequest(SiteSearchRequest input, Context context) {	
@@ -22,7 +24,7 @@ public class LambdaFunctionHandler implements RequestHandler<SiteSearchRequest, 
 	public List<SiteResult> handleRequestInternal(SiteSearchRequest input)
 			throws PermittedStatus400Exception {
 		Location queryLocation = input.parseLocation();
-		int numberOfResultsToReturn = input.parseNumberOfResults();
+		int numberOfResultsToReturn = Math.min(input.parseNumberOfResults(), MAXIMUM_NUMBER_OF_RESULTS);
 		return SiteSearch.search(queryLocation, numberOfResultsToReturn);
 	}
 

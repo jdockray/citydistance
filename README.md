@@ -11,7 +11,7 @@ The API can be tested at [https://hjkbhjet48.execute-api.eu-west-2.amazonaws.com
 Arguments:
 * Latitude - The latitude of the query position
 * Longitude - The longitude of the query position
-* numberOfResults (optional) - The maximum number of results to return
+* numberOfResults (optional) - The maximum number of results to return (default = 10, maximum = 500)
 
 Example for Cambridge, UK:
 [https://hjkbhjet48.execute-api.eu-west-2.amazonaws.com/production/citydistance?latitude=52.2&longitude=0.1&numberOfResults=10](https://hjkbhjet48.execute-api.eu-west-2.amazonaws.com/production/citydistance?latitude=52.2&longitude=0.1&numberOfResults=10)
