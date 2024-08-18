@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="citydistance">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../../../eclipse/java-2024-06/eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="21"/>
+    <property name="source" value="21"/>
+    <path id="Maven Dependencies.libraryclasspath">
+        <pathelement location="../../../../../.m2/repository/junit/junit/4.12/junit-4.12.jar"/>
+        <pathelement location="../../../../../.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/aws-lambda-java-events/1.3.0/aws-lambda-java-events-1.3.0.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/aws-java-sdk-s3/1.11.482/aws-java-sdk-s3-1.11.482.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/aws-java-sdk-kms/1.11.482/aws-java-sdk-kms-1.11.482.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/aws-java-sdk-core/1.11.482/aws-java-sdk-core-1.11.482.jar"/>
+        <pathelement location="../../../../../.m2/repository/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar"/>
+        <pathelement location="../../../../../.m2/repository/org/apache/httpcomponents/httpclient/4.5.5/httpclient-4.5.5.jar"/>
+        <pathelement location="../../../../../.m2/repository/org/apache/httpcomponents/httpcore/4.4.9/httpcore-4.4.9.jar"/>
+        <pathelement location="../../../../../.m2/repository/commons-codec/commons-codec/1.10/commons-codec-1.10.jar"/>
+        <pathelement location="../../../../../.m2/repository/software/amazon/ion/ion-java/1.0.2/ion-java-1.0.2.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.6.7.2/jackson-databind-2.6.7.2.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.6.0/jackson-annotations-2.6.0.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/fasterxml/jackson/core/jackson-core/2.6.7/jackson-core-2.6.7.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-cbor/2.6.7/jackson-dataformat-cbor-2.6.7.jar"/>
+        <pathelement location="../../../../../.m2/repository/joda-time/joda-time/2.8.1/joda-time-2.8.1.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/jmespath-java/1.11.482/jmespath-java-1.11.482.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/aws-java-sdk-sns/1.11.482/aws-java-sdk-sns-1.11.482.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/aws-java-sdk-sqs/1.11.482/aws-java-sdk-sqs-1.11.482.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/aws-java-sdk-cognitoidentity/1.11.482/aws-java-sdk-cognitoidentity-1.11.482.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/aws-java-sdk-kinesis/1.11.482/aws-java-sdk-kinesis-1.11.482.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/aws-java-sdk-dynamodb/1.11.482/aws-java-sdk-dynamodb-1.11.482.jar"/>
+        <pathelement location="../../../../../.m2/repository/com/amazonaws/aws-lambda-java-core/1.1.0/aws-lambda-java-core-1.1.0.jar"/>
+    </path>
+    <path id="JUnit 5.libraryclasspath">
+        <pathelement location="../../../../../.p2/pool/plugins/junit-jupiter-api_5.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-jupiter-engine_5.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-jupiter-migrationsupport_5.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-jupiter-params_5.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-platform-commons_1.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-platform-engine_1.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-platform-launcher_1.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-platform-runner_1.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-platform-suite-api_1.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-platform-suite-engine_1.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-platform-suite-commons_1.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/junit-vintage-engine_5.10.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/org.opentest4j_1.3.0.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/org.apiguardian.api_1.1.2.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/org.junit_4.13.2.v20230809-1000.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/org.hamcrest_2.2.0.jar"/>
+        <pathelement location="../../../../../.p2/pool/plugins/org.hamcrest.core_2.2.0.v20230809-1000.jar"/>
+    </path>
+    <path id="citydistance.classpath">
+        <pathelement location="target/classes"/>
+        <pathelement location="target/test-classes"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+    </path>
+    <path id="run.joeldockray.demos.awslambda.citydistance.classpath">
+        <path refid="citydistance.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="target/classes"/>
+        <mkdir dir="target/test-classes"/>
+        <copy includeemptydirs="false" todir="target/classes">
+            <fileset dir="src/main/java">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="target/test-classes">
+            <fileset dir="src/test/java">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="target/classes"/>
+        <delete dir="target/test-classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/main/java"/>
+            <classpath refid="citydistance.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="target/test-classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src/test/java"/>
+            <classpath refid="citydistance.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="joeldockray.demos.awslambda.citydistance">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.joeldockray.demos.awslambda.citydistance.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
