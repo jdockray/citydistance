@@ -1,0 +1,119 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "A RESTful API for AWS Lambda which returns the nearest cities to a specified GPS location.",
+    "version" : "2024-08-18T19:06:56Z",
+    "title" : "citydistance"
+  },
+  "host" : "hjkbhjet48.execute-api.eu-west-2.amazonaws.com",
+  "basePath" : "/production",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/citydistance" : {
+      "get" : {
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "longitude",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "numberOfResults",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "latitude",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "200 response",
+            "schema" : {
+              "$ref" : "#/definitions/SiteList"
+            }
+          },
+          "400" : {
+            "description" : "400 response"
+          }
+        },
+        "x-amazon-apigateway-request-validator" : "Validate query string parameters and headers",
+        "x-amazon-apigateway-integration" : {
+          "httpMethod" : "POST",
+          "uri" : "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-2:528136271841:function:citydistance/invocations",
+          "responses" : {
+            "default" : {
+              "statusCode" : "200",
+              "responseTemplates" : {
+                "application/json" : "#set($inputRoot = $input.path('$'))\n[\n#foreach($elem in $inputRoot)\n{\n  \"site\": {\n    \"name\": \"$elem.get('site').get('name')\",\n    \"location\": {\n      \"latitude\": $elem.get('site').get('location').get('latitude'),\n      \"longitude\": $elem.get('site').get('location').get('longitude')\n    }\n  },\n  \"kmDistanceAway\": $elem.get('kmDistanceAway')\n}\n#if($foreach.hasNext),\n#end\n#end\n]\n"
+              }
+            },
+            "400.*" : {
+              "statusCode" : "400",
+              "responseTemplates" : {
+                "application/json" : "#set($inputRoot = $input.path('$'))\n{\n  \"message\" : \"$inputRoot.get('errorMessage')\"\n}"
+              }
+            }
+          },
+          "requestTemplates" : {
+            "application/json" : "#set($inputRoot = $input.path('$'))\n{\n    \"latitude\" : $input.params('latitude'),\n    \"longitude\" : $input.params('longitude'),\n#if($input.params('numberOfResults') && $input.params('numberOfResults').length() != 0)\n    \"numberOfResults\": $input.params('numberOfResults')\n#else\n    \"numberOfResults\": \"\"\n#end\n}\n"
+          },
+          "passthroughBehavior" : "when_no_match",
+          "contentHandling" : "CONVERT_TO_TEXT",
+          "type" : "aws"
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "SiteList" : {
+      "type" : "array",
+      "description" : "List of sites",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "site" : {
+            "type" : "object",
+            "description" : "The site concerned.",
+            "properties" : {
+              "name" : {
+                "type" : "string",
+                "description" : "The name of the site."
+              },
+              "location" : {
+                "type" : "object",
+                "description" : "The location of the site.",
+                "properties" : {
+                  "latitude" : {
+                    "type" : "number",
+                    "description" : "The lattitude of the site."
+                  },
+                  "longitude" : {
+                    "type" : "number",
+                    "description" : "The longitude of the site."
+                  }
+                },
+                "required" : [ "longitude" ]
+              }
+            },
+            "required" : [ "location", "name" ]
+          },
+          "kmDistanceAway" : {
+            "type" : "number",
+            "description" : "The distance to the site in kilometres."
+          }
+        },
+        "required" : [ "kmDistanceAway", "site" ]
+      }
+    }
+  },
+  "x-amazon-apigateway-request-validators" : {
+    "Validate query string parameters and headers" : {
+      "validateRequestParameters" : true,
+      "validateRequestBody" : false
+    }
+  }
+}
