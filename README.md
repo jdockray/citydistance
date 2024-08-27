@@ -16,6 +16,12 @@ Arguments:
 Example for Cambridge, UK:
 [https://hjkbhjet48.execute-api.eu-west-2.amazonaws.com/production/citydistance?latitude=52.2&longitude=0.1&numberOfResults=10](https://hjkbhjet48.execute-api.eu-west-2.amazonaws.com/production/citydistance?latitude=52.2&longitude=0.1&numberOfResults=10)
 
+## Third Party Dependencies
+
+This code depends on [AWS Toolkit for Eclipse](https://github.com/aws/aws-toolkit-eclipse/tree/master) (now deprecated) (Copyright 2010-2015 Amazon.com, Inc. or its affiliates). It is licensed under the [Apache 2.0 License](https://github.com/aws/aws-toolkit-eclipse/blob/master/LICENSE.txt) and I invite you to read the [NOTICE file](https://github.com/aws/aws-toolkit-eclipse/blob/master/NOTICE.txt) of the toolkit.
+
+My Eclipse project contains [JUnit 5](https://junit.org/junit5/) unit tests.
+
 ## Data Source and Accuracy
 
 This API was created for demonstration purposes and its results should not be used for anything important. It uses [city location data](CityDistance/src/main/resources/Cities.csv) from [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main_Page) that are open and [not subject to copyright](https://www.wikidata.org/wiki/Wikidata:Data_donation#Wikidata_and_copyright), obtained via the [Wikidata Query Service](https://query.wikidata.org/). No warranty is given as to the accuracy of the data nor the distances returned by this API.
